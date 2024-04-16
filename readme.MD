@@ -3,3 +3,4 @@
 * Download the git
 * installing
 * downloaded commited
+* commited
