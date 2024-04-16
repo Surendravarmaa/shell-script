@@ -4,3 +4,5 @@
 * installing
 * downloaded commited
 * commited
+* practiced
+* shell
