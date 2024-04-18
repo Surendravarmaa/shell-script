@@ -1,7 +1,7 @@
 #!/bin/bash
 
-read -p -s "Enter your name : " username 
-
-read -p -s "Enter your password : " password
-
-echo "username is $username and password is $password"
+read -s -p "Enter your username: " username
+echo  # Move to a new line
+read -s -p "Enter your password: " password
+echo  # Move to a new line
+# Use the 'username' and 'password' variables as needed
