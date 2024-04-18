@@ -9,7 +9,7 @@ else
     echo "you are a super user"
 fi 
 
-dnf install nginx -y
+dnf install nginxx -y
 
 if [ $? -ne 0 ]
 then 
