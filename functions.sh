@@ -4,14 +4,18 @@ USERID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
+echo "Script started executing at: $TIMESTAMP"
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
 
 VALIDATE(){
     if [ $1 -ne 0 ]
     then 
-        echo "$2...FAILURE"
+        echo -e "$2...$R FAILURE"
         exit 1
     else
-        echo "$2...SUCCESS"
+        echo -e "$2...$G SUCCESS"
     fi
 }
 
@@ -24,7 +28,10 @@ else
 fi
 
 dnf install nginx -y &>>$LOGFILE
-VALIDATE $? "Installing nginx"
+VALIDATE  $? "Installing nginx"
 
 dnf install mysql -y &>>$LOGFILE
-VALIDATE $? "Installing mysql"
+VALIDATE  $? "Installing mysql"
+
+dnf install dockerr -y &>>$LOGFILE
+VALIDATE  $? "Installing docker"
