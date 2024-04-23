@@ -9,7 +9,7 @@ else
     echo "you are a super user"
 fi 
 
-dnf install nginxx -y
+dnf install nginx -y
 
 if [ $? -ne 0 ]
 then 
@@ -19,6 +19,15 @@ else
     echo "my nginx server is success"
 fi
 
+dnf install mysql -y
+
+if [ $? -ne 0 ]
+then 
+    echo "my mysql is failure"
+    exit 1
+else 
+    echo "my mysql is success"
+fi
 
 
 
