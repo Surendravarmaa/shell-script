@@ -3,7 +3,8 @@
 USERID=$(id -u)
 
 VALIDATE(){
-    echo "What are you doing : $1"
+    echo "exit status : $1"
+    echo "What are you doing : $2"
 }
 
 if [ $USERID -ne 0 ]
@@ -15,7 +16,7 @@ else
 fi
 
 dnf install nginx -y
-VALIDATE  "Installing nginx"
+VALIDATE $? "Installing nginx"
 
 dnf install mysql -y 
-VALIDATE  "Installing mysql"
+VALIDATE $? "Installing mysql"
