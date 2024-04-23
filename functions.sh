@@ -1,6 +1,9 @@
 #!/bin/bash
 
 USERID=$(id -u)
+TIMESTAMP=$(date+%F-%H-%M-%S)
+SCRIPT_NAME=$(echo $0 | AWK -F "." '{PRINT -1F}')
+LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 
 VALIDATE(){
     if [ $1 -ne 0 ]
@@ -19,8 +22,8 @@ else
     echo "you are a super user"
 fi
 
-dnf install nginx -y
+dnf install nginx -y &>> $LOGFILE
 VALIDATE $? "Installing nginx"
 
-dnf install mysql -y 
+dnf install mysql -y &>> $LOGFILE
 VALIDATE $? "Installing mysql"
