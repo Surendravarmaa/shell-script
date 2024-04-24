@@ -29,5 +29,5 @@ fi
 yum install docker -y &>> $LOGFILE
 VALIDATE  "Installing Docker is" $?
 
-yum install mysqll -y &>> $LOGFILE
+yum install mysql-sever -y &>> $LOGFILE
 VALIDATE  "Installing Mysql is" $?
