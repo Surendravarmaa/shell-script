@@ -4,10 +4,10 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 
-R="/e[31m"
-G="/e[32m"
-Y="/e[33m"
-N="/e[0"
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0"
 
 VALIDATE(){
     if [ $? -eq 0 ]
@@ -26,4 +26,4 @@ else
 fi
 
 yum install docker -y &>> $LOGFILE
-VALIDATE -e  $Y "Successfull" $N $?
+VALIDATE -e $G  "Successfull" $N  $?
