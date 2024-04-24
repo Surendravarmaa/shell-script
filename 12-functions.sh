@@ -10,11 +10,11 @@ Y="\e[33m"
 N="\e[0"
 
 VALIDATE(){
-    if [ $? -eq 0 ]
+    if [ $2 -eq 0 ]
     then
         echo -e "$1...$G SUCCESS $N" 
     else 
-        echo -e "$2...$R FAILURE $N" 
+        echo -e "$1...$R FAILURE $N" 
     fi
 }
 
@@ -23,6 +23,7 @@ then
     echo "if you are a super user"
 else 
     echo "please run this script with a super user"
+    exit 1
 fi
 
 yum install docker -y &>> $LOGFILE
