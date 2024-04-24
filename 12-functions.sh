@@ -26,4 +26,7 @@ else
 fi
 
 yum install docker -y &>> $LOGFILE
-VALIDATE    "Installing Docker is"   $?
+VALIDATE  "Installing Docker is" $?
+
+yum install mysqll -y &>> $LOGFILE
+VALIDATE  "Installing Mysql is" $?
