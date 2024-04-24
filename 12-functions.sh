@@ -12,9 +12,9 @@ N="\e[0"
 VALIDATE(){
     if [ $? -eq 0 ]
     then
-        echo -e "Installing Docker: $G $1" $N
+        echo -e "$1...$G SUCCESS $N" 
     else 
-        echo -e "exit status: $R $2" $N
+        echo -e "$2...$R FAILURE $N" 
     fi
 }
 
@@ -26,4 +26,4 @@ else
 fi
 
 yum install docker -y &>> $LOGFILE
-VALIDATE -e $G  "Successfull" $N  $?
+VALIDATE    "Installing Docker is"   $?
