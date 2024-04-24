@@ -9,6 +9,14 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+if [ $USERID -ne 0 ]
+then 
+    echo "Please run this script with root access."
+    exit 1
+else 
+    echo "you are a super user."
+fi
+
 VALIDATE(){
     if [ $1 -ne 0]
     then
@@ -19,13 +27,6 @@ VALIDATE(){
     fi
 }
 
-if [ $USERID -ne 0 ]
-then 
-    echo "Please run this script with root access."
-    exit 1
-else 
-    echo "you are a super user."
-fi
 
 for i in $@
 do
@@ -35,7 +36,7 @@ do
     then
         echo -e "$i already installed.... $Y SKIPPING $N"
     else 
-        echo "$i not installed....Need to install"
+        dnf install $i -y &>> $LOGFILE
     fi
 done
 
