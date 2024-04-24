@@ -30,7 +30,7 @@ VALIDATE(){
 
 for i in $@
 do
-    echo "packages to insatll: $i"
+    echo "packages to install: $i"
     dnf list installed $i &>> $LOGFILE
     if [ $? -eq 0 ]
     then
