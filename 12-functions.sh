@@ -4,30 +4,35 @@ TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 
+echo "Script started executing at: $TIMESTAMP"
+
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-VALIDATE(){
-    if [ $2 -eq 0 ]
-    then
-        echo -e "$1...$G SUCCESS $N" 
-    else 
-        echo -e "$1...$R FAILURE $N" 
-    fi
-}
 
 if [ $USERID -eq 0 ]
 then
-    echo "if you are a super user"
+    echo "you are a super user"
 else 
     echo "please run this script with a super user"
     exit 1
 fi
 
-yum install docker -y &>> $LOGFILE
-VALIDATE  "Installing Docker is" $?
+VALIDATE(){
+    if [ $1 -eq 0 ]
+    then
+        echo -e "$2...$G SUCCESS $N" 
+    else 
+        echo -e "$2...$R FAILURE $N" 
+    fi
+}
 
-dnf install mysql-sever -y &>> $LOGFILE
-VALIDATE  "Installing Mysql is" $?
+yum install docker -y &>> $LOGFILE
+VALIDATE $? "Installing Docker is" 
+
+dnf install mysqld-sever -y &>> $LOGFILE
+VALIDATE $? "Installing Mysql is" 
+
+
