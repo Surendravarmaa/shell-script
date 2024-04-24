@@ -18,9 +18,10 @@ else
 fi
 
 VALIDATE(){
-    if [ $1 -ne 0]
+    if [ $1 -ne 0 ]
     then
         echo -e "$2....$R FAILURE $N"
+        exit 1
     else 
         echo -e "$2....$G SUCCESS $N"
     fi
@@ -36,7 +37,7 @@ do
         echo -e "$i already installed.... $Y SKIPPING $N"
     else 
         dnf install $i -y &>> $LOGFILE
-        VALIDATE $? "Installing GIT"
+        VALIDATE $? "Installing of $i"
     fi
 done
 
